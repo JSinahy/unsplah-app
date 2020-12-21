@@ -12,6 +12,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.laraguzman.tribalproofactivity.data.models.UnsplahPhotos
+import com.laraguzman.tribalproofactivity.databinding.ItemFavoritePhotosBinding
 import com.laraguzman.tribalproofactivity.databinding.ItemPhotoUnsplashBinding
 
 class FavoritesPhotosAdapter(dataListener: FavoritesPhotosListener) : RecyclerView.Adapter<FavoritesPhotosAdapter.MyViewHolder>(){
@@ -30,7 +31,7 @@ class FavoritesPhotosAdapter(dataListener: FavoritesPhotosListener) : RecyclerVi
     ): FavoritesPhotosAdapter.MyViewHolder {
         parentContext = parent.context
         val layout = LayoutInflater.from(parent.context)
-        val binding = ItemPhotoUnsplashBinding.inflate(layout)
+        val binding = ItemFavoritePhotosBinding.inflate(layout)
         return MyViewHolder(binding)
     }
 
@@ -52,9 +53,9 @@ class FavoritesPhotosAdapter(dataListener: FavoritesPhotosListener) : RecyclerVi
 
 
 
-    class MyViewHolder(val binding: ItemPhotoUnsplashBinding) : RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder(val binding: ItemFavoritePhotosBinding) : RecyclerView.ViewHolder(binding.root){
 
-        var itemBinding : ItemPhotoUnsplashBinding = binding
+        var itemBinding : ItemFavoritePhotosBinding = binding
 
         fun bind(data: UnsplahPhotos){
             binding.itemRecyclerPhoto = data

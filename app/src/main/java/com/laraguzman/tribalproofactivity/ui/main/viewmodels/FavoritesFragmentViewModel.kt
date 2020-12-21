@@ -77,6 +77,12 @@ class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), 
                 //Log.wtf("PHOTO", data.user?.username)
             }
             3-> {
+                val listType = object : TypeToken<ArrayList<UnsplahPhotos?>?>() {}.type
+                modelo = Gson().fromJson(prefs.name, listType)
+                modelo?.remove(data)
+                val datos : String = Gson().toJson(modelo)
+                prefs.name = datos
+                unsplashFavorites.postValue(modelo)
                 // Para eliminar un elemento de mis favoritos
             }
         }
