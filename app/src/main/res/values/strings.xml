@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TribalProofActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_favorites">Favoritos</string>
+    <string name="menu_images">Images</string>
+    <string name="menu_brujula">Brujula</string>
+    <string name="floating_description">Boton para agregar fotos</string>
+    <string name="title_photos">PHOTOS</string>
+    <string name="edit_buscar_hint">Buscar por usuario o nombre</string>
+    <string name="title_favorites">FAVORITES</string>
+    <string name="subtitle_favorites">Your\'s favorites photons in a single place</string>
+</resources>

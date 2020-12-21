@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="itemRecyclerPhoto"
+            type="com.laraguzman.tribalproofactivity.data.models.UnsplahPhotos" />
+    </data>
+
+    <RelativeLayout
+        android:padding="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            android:padding="@dimen/margin_8"
+            android:id="@+id/itemCard"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <ImageView
+                android:src="@drawable/banner"
+                android:background="@drawable/custom_image_rounded"
+                android:adjustViewBounds="true"
+                android:id="@+id/imageItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:padding="@dimen/margin_8"
+                android:background="@color/tenue_black"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/cardImageProfile"
+                        android:layout_marginStart="@dimen/margin_8"
+                        android:layout_gravity="top|start"
+                        android:layout_width="20dp"
+                        app:cardCornerRadius="10dp"
+                        android:elevation="4dp"
+                        android:shape="ring"
+                        android:thicknessRatio="1.9"
+                        android:layout_height="20dp">
+                        <ImageView
+                            android:scaleType="fitXY"
+                            android:id="@+id/imageProfile"
+                            android:src="@drawable/banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_toEndOf="@+id/cardImageProfile"
+                        android:textSize="@dimen/title_10"
+                        android:fontFamily="@font/rubik_normal"
+                        android:id="@+id/itemUsername"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="@dimen/margin_16"
+                        android:text="@={ itemRecyclerPhoto.user.name }"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_below="@+id/itemUsername"
+                        android:layout_toEndOf="@+id/cardImageProfile"
+                        android:inputType="number"
+                        android:textSize="@dimen/title_10"
+                        android:fontFamily="@font/rubik_normal"
+                        android:id="@+id/itemLikes"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="@dimen/margin_16"
+                        android:text="Likes 278"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="TextViewEdits" />
+
+                    <ImageView
+                        android:id="@+id/itemFavorite"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:src="@drawable/ic_favorite"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/itemProgressBar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+</layout>

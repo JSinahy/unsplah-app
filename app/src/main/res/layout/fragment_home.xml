@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.laraguzman.tribalproofactivity.ui.main.viewmodels.HomeFragmentViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.HomeFragment">
+
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginStart="@dimen/margin_16"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/title_photos"
+            android:textSize="@dimen/title_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:textColor="@color/subtitle"
+            android:layout_marginStart="@dimen/margin_16"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feed the Digital World through Beatiful Photos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="@drawable/custom_rounded_container"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_11"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:text="@={ homeViewModel.searchText }"
+                android:id="@+id/textSearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/rubik_normal"
+                android:hint="Buscar por usuario o nombre"
+                android:textColorHint="@color/subtitle"
+                android:textSize="@dimen/title_14" />
+
+            <LinearLayout
+                android:id="@+id/searchButton"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:background="@drawable/custom_twocorners_rounded"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_8">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_send" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginBottom="?android:attr/actionBarSize"
+            app:setAdapter="@{ homeViewModel.GetAdapter() }"
+            android:id="@+id/recyclerHomePhotos"
+            tools:listitem="@layout/item_photo_unsplash"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.067" />
+
+        <RelativeLayout
+            android:id="@+id/groupEmpyState"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageEmptyState"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_empty_state3"
+                android:layout_width="256dp"
+                android:layout_height="256dp"/>
+            <EditText
+                android:layout_below="@+id/imageEmptyState"
+                android:textAlignment="center"
+                android:textColor="@color/subtitle"
+                android:textSize="@dimen/title_24"
+                android:text="Opps!, try again"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
