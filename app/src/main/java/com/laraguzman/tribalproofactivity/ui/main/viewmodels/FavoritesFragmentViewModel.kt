@@ -21,7 +21,7 @@ import java.io.Serializable
 class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), FavoritesPhotosListener {
     var unsplashFavorites: MutableLiveData<ArrayList<UnsplahPhotos>>
     var modelo : ArrayList<UnsplahPhotos>? = null
-    lateinit var unsplashAdapter : FavoritesPhotosAdapter
+    var unsplashAdapter : FavoritesPhotosAdapter
 
     companion object {
         lateinit var prefs: Preferences

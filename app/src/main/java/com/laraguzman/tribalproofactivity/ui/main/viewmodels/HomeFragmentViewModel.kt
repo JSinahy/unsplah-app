@@ -146,7 +146,7 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
     fun GetDataFavorites(data: String ) : ArrayList<UnsplahPhotos>?{
         //Log.wtf("CADENA", FavoritesFragmentViewModel.prefs.name)
         val listType = object : TypeToken<ArrayList<UnsplahPhotos?>?>() {}.type
-        val modelo : ArrayList<UnsplahPhotos>? = Gson().fromJson(FavoritesFragmentViewModel.prefs.name, listType)
+        val modelo : ArrayList<UnsplahPhotos>? = Gson().fromJson(prefs.name, listType)
         return modelo
     }
 }
