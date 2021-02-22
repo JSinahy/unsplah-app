@@ -56,7 +56,7 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
 
     fun GetPhotosFromApi(){
         val retrofitInstance = UnsplashApinstance().GetInstance().create(UnsplashService::class.java)
-        val call = retrofitInstance.searchPhotos("BQ7lb6-QhUGFdcuUq4-ohH6Iafl3KBbODMhZJsrO0VI", 1, 20)
+        val call = retrofitInstance.searchPhotos("<YOUR API KEY>", 1, 20)
         call.enqueue(object : Callback<ArrayList<UnsplahPhotos>> {
             override fun onResponse(
                 call: Call<ArrayList<UnsplahPhotos>>,
@@ -79,7 +79,7 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
 
     fun GetPhotosFromApiSearch(search: String){
         val retrofitInstance = UnsplashApinstance().GetInstance().create(UnsplashService::class.java)
-        val call = retrofitInstance.searchPhotos("BQ7lb6-QhUGFdcuUq4-ohH6Iafl3KBbODMhZJsrO0VI", search, 1, 20)
+        val call = retrofitInstance.searchPhotos("<YOUR API KEY>", search, 1, 20)
         call.enqueue(object : Callback<SearchPhotos> {
             override fun onResponse(
                 call: Call<SearchPhotos>,
@@ -107,7 +107,7 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
 
                 val intent = Intent(app, ProfileActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.putExtra("SALUDO", "QUE PEX MOTHER FUCKER")
+                intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
                 app.startActivity(intent)
                 //Log.wtf("PHOTO", data.user?.username)
@@ -117,7 +117,7 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
 
                 val intent = Intent(app, DetailPhotoActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.putExtra("SALUDO", "QUE PEX MOTHER FUCKER")
+                intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
                 app.startActivity(intent)
                 //Log.wtf("PHOTO", data.user?.username)
