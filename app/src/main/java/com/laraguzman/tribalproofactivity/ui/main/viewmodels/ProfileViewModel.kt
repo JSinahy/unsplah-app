@@ -36,7 +36,7 @@ class ProfileViewModel : ViewModel() {
 
     fun GetPhotosFromApi(username: String?){
         val retrofitInstance = UnsplashApinstance().GetInstance().create(UnsplashService::class.java)
-        val call = retrofitInstance.searchPhotoUsers(username, "BQ7lb6-QhUGFdcuUq4-ohH6Iafl3KBbODMhZJsrO0VI")
+        val call = retrofitInstance.searchPhotoUsers(username, "<YOUR API KEY>")
         call.enqueue(object : Callback<ArrayList<UnsplahPhotos>> {
             override fun onResponse(
                 call: Call<ArrayList<UnsplahPhotos>>,
