@@ -61,7 +61,7 @@ class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), 
 
                 val intent = Intent(app, ProfileActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.putExtra("SALUDO", "QUE PEX MOTHER FUCKER")
+                intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
                 app.startActivity(intent)
                 //Log.wtf("PHOTO", data.user?.username)
@@ -71,7 +71,7 @@ class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), 
 
                 val intent = Intent(app, DetailPhotoActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.putExtra("SALUDO", "QUE PEX MOTHER FUCKER")
+                intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
                 app.startActivity(intent)
                 //Log.wtf("PHOTO", data.user?.username)
