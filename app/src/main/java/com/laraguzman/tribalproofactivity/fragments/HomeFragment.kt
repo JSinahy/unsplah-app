@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.laraguzman.tribalproofactivity.R
 import com.laraguzman.tribalproofactivity.databinding.FragmentHomeBinding
 import com.laraguzman.tribalproofactivity.ui.main.viewmodels.HomeFragmentViewModel
-import com.laraguzman.tribalproofactivity.ui.main.viewmodels.HomeFragmentViewModelFactory
 import com.laraguzman.tribalproofactivity.utils.SpacesItemDecoration
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,8 +32,6 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
 
     var binding : FragmentHomeBinding? = null
-
-    private lateinit var viewModelFactory: HomeFragmentViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

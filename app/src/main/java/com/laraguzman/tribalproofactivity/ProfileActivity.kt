@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.laraguzman.tribalproofactivity.data.models.UnsplahPhotos
 import com.laraguzman.tribalproofactivity.databinding.ActivityProfileBinding
+import com.laraguzman.tribalproofactivity.ui.base.BaseApplication
 import com.laraguzman.tribalproofactivity.ui.main.viewmodels.HomeFragmentViewModel
 import com.laraguzman.tribalproofactivity.ui.main.viewmodels.ProfileViewModel
 import com.laraguzman.tribalproofactivity.utils.SpacesItemDecoration
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseApplication() {
 
     var binding: ActivityProfileBinding? = null
 
@@ -27,7 +28,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_profile)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
+        binding = DataBindingUtil.setContentView(instance, R.layout.activity_profile)
 
         val message = intent.getStringExtra("SALUDO")
         val profile : UnsplahPhotos = intent.getSerializableExtra("PROFILE") as UnsplahPhotos
@@ -68,7 +69,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     fun makeApiCall(profile: UnsplahPhotos) : ProfileViewModel {
-        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val viewModel = ViewModelProvider(instance).get(ProfileViewModel::class.java)
         binding?.viewModelProfile = viewModel
 
         val decoration = SpacesItemDecoration(32)
@@ -82,11 +83,11 @@ class ProfileActivity : AppCompatActivity() {
         binding?.recyclerProfilePhotos?.addItemDecoration(decoration)
 
 
-        viewModel.GetListUnsplashPhotos().observe(this, Observer { photos->
+        viewModel.GetListUnsplashPhotos().observe(instance, Observer { photos->
             if(photos != null){
                 viewModel.SetAdapter(photos)
             }else{
-                Toast.makeText(this, "Error in fetching data", Toast.LENGTH_LONG).show()
+                Toast.makeText(instance, "Error in fetching data", Toast.LENGTH_LONG).show()
             }
         })
         val username: String? = profile.user.username

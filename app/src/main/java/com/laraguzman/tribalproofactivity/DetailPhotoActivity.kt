@@ -6,8 +6,9 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.laraguzman.tribalproofactivity.data.models.UnsplahPhotos
 import com.laraguzman.tribalproofactivity.databinding.ActivityDetailPhotoBinding
+import com.laraguzman.tribalproofactivity.ui.base.BaseApplication
 
-class DetailPhotoActivity : AppCompatActivity() {
+class DetailPhotoActivity : BaseApplication() {
 
     var binding: ActivityDetailPhotoBinding? = null
 

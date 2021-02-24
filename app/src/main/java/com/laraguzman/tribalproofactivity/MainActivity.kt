@@ -13,9 +13,10 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.laraguzman.tribalproofactivity.databinding.ActivityMainBinding
 import com.laraguzman.tribalproofactivity.fragments.FavoritesFragment
 import com.laraguzman.tribalproofactivity.fragments.HomeFragment
+import com.laraguzman.tribalproofactivity.ui.base.BaseApplication
 import com.laraguzman.tribalproofactivity.utils.BottomAppBarCutCornersTopEdge
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseApplication() {
     var binding : ActivityMainBinding? = null
 
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(instance, R.layout.activity_main)
 
         binding?.bottomAppBar
 

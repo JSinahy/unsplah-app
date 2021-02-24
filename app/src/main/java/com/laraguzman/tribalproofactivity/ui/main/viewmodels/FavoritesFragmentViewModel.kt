@@ -1,24 +1,27 @@
 package com.laraguzman.tribalproofactivity.ui.main.viewmodels
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.laraguzman.tribalproofactivity.DetailPhotoActivity
 import com.laraguzman.tribalproofactivity.ProfileActivity
 import com.laraguzman.tribalproofactivity.data.models.UnsplahPhotos
 import com.laraguzman.tribalproofactivity.data.persistence.Preferences
+import com.laraguzman.tribalproofactivity.ui.base.BaseApplication
 import com.laraguzman.tribalproofactivity.ui.main.adapters.FavoritesPhotosAdapter
 import com.laraguzman.tribalproofactivity.ui.main.adapters.FavoritesPhotosListener
 import com.laraguzman.tribalproofactivity.ui.main.adapters.HomePhotosAdapter
 import java.io.Serializable
 
 
-class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), FavoritesPhotosListener {
+class FavoritesFragmentViewModel : ViewModel(), FavoritesPhotosListener {
     var unsplashFavorites: MutableLiveData<ArrayList<UnsplahPhotos>>
     var modelo : ArrayList<UnsplahPhotos>? = null
     var unsplashAdapter : FavoritesPhotosAdapter
@@ -29,7 +32,7 @@ class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), 
 
     init{
         unsplashFavorites = MutableLiveData()
-        prefs = Preferences(app.applicationContext)
+        prefs = Preferences(BaseApplication.instance)
         modelo = ArrayList()
         unsplashAdapter = FavoritesPhotosAdapter(this)
     }
@@ -38,6 +41,7 @@ class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), 
         return unsplashAdapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun SetAdapter(data: ArrayList<UnsplahPhotos>){
         unsplashAdapter.setDataList(data)
         unsplashAdapter.notifyDataSetChanged()
@@ -57,24 +61,19 @@ class FavoritesFragmentViewModel(val app: Application) : AndroidViewModel(app), 
     override fun onClickPhoto(data: UnsplahPhotos, action: Int) {
         when(action) {
             2-> {
-                Toast.makeText(app.applicationContext, data.user?.username, Toast.LENGTH_LONG).show()
-
-                val intent = Intent(app, ProfileActivity::class.java)
+                val intent = Intent(BaseApplication.instance, ProfileActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
-                app.startActivity(intent)
-                //Log.wtf("PHOTO", data.user?.username)
+                BaseApplication.instance.startActivity(intent)
             }
             1-> {
-                Toast.makeText(app.applicationContext, data.user?.username, Toast.LENGTH_LONG).show()
 
-                val intent = Intent(app, DetailPhotoActivity::class.java)
+                val intent = Intent(BaseApplication.instance, DetailPhotoActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
-                app.startActivity(intent)
-                //Log.wtf("PHOTO", data.user?.username)
+                BaseApplication.instance.startActivity(intent)
             }
             3-> {
                 val listType = object : TypeToken<ArrayList<UnsplahPhotos?>?>() {}.type

@@ -1,5 +1,6 @@
 package com.laraguzman.tribalproofactivity.ui.main.viewmodels
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class ProfileViewModel : ViewModel() {
         return unsplashProfileAdapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun SetAdapter(data: ArrayList<UnsplahPhotos>){
         unsplashProfileAdapter.setDataList(data)
         unsplashProfileAdapter.notifyDataSetChanged()

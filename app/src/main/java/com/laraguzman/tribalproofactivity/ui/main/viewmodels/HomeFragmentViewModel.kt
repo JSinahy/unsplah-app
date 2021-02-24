@@ -1,11 +1,13 @@
 package com.laraguzman.tribalproofactivity.ui.main.viewmodels
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.laraguzman.tribalproofactivity.DetailPhotoActivity
@@ -15,6 +17,7 @@ import com.laraguzman.tribalproofactivity.data.api.UnsplashService
 import com.laraguzman.tribalproofactivity.data.models.SearchPhotos
 import com.laraguzman.tribalproofactivity.data.models.UnsplahPhotos
 import com.laraguzman.tribalproofactivity.data.persistence.Preferences
+import com.laraguzman.tribalproofactivity.ui.base.BaseApplication
 import com.laraguzman.tribalproofactivity.ui.main.adapters.HomePhotoListener
 import com.laraguzman.tribalproofactivity.ui.main.adapters.HomePhotosAdapter
 import retrofit2.Call
@@ -22,7 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.Serializable
 
-class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomePhotoListener {
+class HomeFragmentViewModel : ViewModel(), HomePhotoListener {
     var unsplashphotos : MutableLiveData<ArrayList<UnsplahPhotos>>
     var unsplashAdapter : HomePhotosAdapter
     var unsplashFavorites: ArrayList<UnsplahPhotos>? = null
@@ -38,13 +41,14 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
         unsplashAdapter = HomePhotosAdapter(this)
         unsplashFavorites = ArrayList<UnsplahPhotos>()
 
-        prefs = Preferences(app.applicationContext)
+        prefs = Preferences(BaseApplication.instance)
     }
 
     fun GetAdapter() : HomePhotosAdapter{
         return unsplashAdapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun SetAdapter(data: ArrayList<UnsplahPhotos>){
         unsplashAdapter.setDataList(data)
         unsplashAdapter.notifyDataSetChanged()
@@ -103,23 +107,21 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
     override fun onClickPhoto(data: UnsplahPhotos, action: Int) {
         when(action) {
             2-> {
-                Toast.makeText(app.applicationContext, data.user?.username, Toast.LENGTH_LONG).show()
-
-                val intent = Intent(app, ProfileActivity::class.java)
+                val intent = Intent(BaseApplication.instance, ProfileActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
-                app.startActivity(intent)
+                BaseApplication.instance.startActivity(intent)
                 //Log.wtf("PHOTO", data.user?.username)
             }
             1-> {
-                Toast.makeText(app.applicationContext, data.user?.username, Toast.LENGTH_LONG).show()
+                Toast.makeText(BaseApplication.instance, data.user?.username, Toast.LENGTH_LONG).show()
 
-                val intent = Intent(app, DetailPhotoActivity::class.java)
+                val intent = Intent(BaseApplication.instance, DetailPhotoActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("SALUDO", "")
                 intent.putExtra("PROFILE", data as Serializable)
-                app.startActivity(intent)
+                BaseApplication.instance.startActivity(intent)
                 //Log.wtf("PHOTO", data.user?.username)
             }
             3-> {
@@ -130,13 +132,13 @@ class HomeFragmentViewModel(val app: Application) : AndroidViewModel(app), HomeP
                     val datos : String = Gson().toJson(modelo)
                     prefs.name = datos
                     //Log.wtf("GUARDADO", prefs.name)
-                    Toast.makeText(app.applicationContext, "Esta imagen se ha guardado en mis favoritos", Toast.LENGTH_LONG).show()
+                    Toast.makeText(BaseApplication.instance, "Esta imagen se ha guardado en mis favoritos", Toast.LENGTH_LONG).show()
                 }else{
                     unsplashFavorites?.add(data)
                     val datos : String = Gson().toJson(unsplashFavorites)
                     prefs.name = datos
                     //Log.wtf("GUARDADO", prefs.name)
-                    Toast.makeText(app.applicationContext, "Esta imagen se ha guardado en mis favoritos", Toast.LENGTH_LONG).show()
+                    Toast.makeText(BaseApplication.instance, "Esta imagen se ha guardado en mis favoritos", Toast.LENGTH_LONG).show()
                 }
 
             }
