@@ -10,6 +10,8 @@
 # App Android Kotlin
 Esta es una aplicación que ayuda a entender el MVVM, Databinding y AndroidRX.
 
+Recuerden colocar su propio API KEY de Unsplash.
+
 # Funcionalidad de la app
 Si dan click en el icono del perfil del usuario (creador de la imagen) los llevara al perfil del usuario.
 Si dan click en la imagen los llevara a un detalle de la imagen y la podran ver mas grande.
